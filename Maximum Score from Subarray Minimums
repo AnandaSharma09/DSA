@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    // Function to find pair with maximum sum
+    int pairWithMaxSum(vector<int> &arr) {
+        // Your code goes here
+        long sum=0;
+        long msum= LONG_MIN;
+        for(int i=0;i<arr.size();i++){
+            sum+=arr[i];
+            msum=max(sum,msum);
+            sum=arr[i];
+        }
+        return msum;
+    }
+};
