@@ -1,0 +1,60 @@
+<<<<<<----------Brute Force--------->>>>>>
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+int sum=0, msum=INT_MIN;
+for(int i=0;i<nums.length();i++){
+   for(int j=i;j<nums.size();j++){
+      int sum=0;
+     for(k=i;k<=j;k++){
+         sum+=nums[i];
+     }
+msum=max(sum,msum);
+   }
+}
+return msum;
+}
+};
+
+Time- O(n3)
+Space - O(1)
+
+<<<<<<------------Better Approach------------>>>>>>
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int msum=INT_MIN;
+        for(int i=0;i<nums.size();i++){
+            int sum=0;
+            for(int j=i ; j<nums.length();j++){
+                sum+=nums[j];
+            msum=max(sum,msum);
+                 }
+        }
+return msum;
+}
+};
+
+<<<<<<------------ Optimal Approach ------------>>>>>>
+
+#using Kadane's Algorithm
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+       ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+       int sum=0, msum=INT_MIN;
+       for(int i=0;;i<nums.size();i++){
+           sum+=nums[i];
+           msum=max(sum,msum);
+          if(sum<0){
+            sum=0;
+          }
+       }
+return msum;
+
+}
+};
+
+
