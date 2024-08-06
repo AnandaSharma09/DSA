@@ -1,0 +1,56 @@
+<<<<<<------------ Brute Force ------------>>>>>>
+
+#using stack 
+
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+      stack<char>st;
+      string a;
+      for(int i=0;i<s.size();i++){
+         if(s[i]=='('){
+           if(st.size()){
+             a+='(';
+           }
+          st.push('(');
+         }
+         else{
+           if(st.size()>1){
+             a+=')';
+           }
+           st.pop();
+         }
+      }
+return a;
+      }
+};
+
+
+
+<<<<<<------------ Optimal Solution ------------>>>>>>
+
+#Without using stack
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+     string a;
+     int flag=0;
+     for(int i=0;i<s.size();i++){
+        if(s[i]=='('){
+          if(flag>0){
+            a+=s[i];
+          }
+          flag++;
+        }
+       else{
+          if(flag>1){
+            a+=s[i];
+             }
+          flag--;
+          }
+        }
+   return a;;
+    }
+};
+
+
