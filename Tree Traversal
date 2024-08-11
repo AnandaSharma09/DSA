@@ -1,0 +1,41 @@
+vector<vector<int>> getTreeTraversal(TreeNode *root){
+     if(!root) return {};           //if the root has no value means there is no tree
+     vector<vector<int>>ans;        // as the output should return all in pre and pos in one go
+     vector<int>i, pre, pos;        // i for in-order, pre for pre-order, pos for post-order
+     stack<pair<TreeNode*, int>>s;  //stack to get track of traversal having a root value and a paired value to it showing if it is going for NLR, LNR, or LRN
+     s.push({root,1});              //First we will push the node with the paired value of the as first to go for pre-order traversal
+     while(!s.empty()){             //After that we have initialized a while until the stack gets empty
+     TreeNode* node=s.top().first;  // After that we gave the top element's first value of the stack s to node of struct TreeNode
+     int cnt=s.top().second;        // After that we gave cnt the value of the stack top element's second value
+     s.pop();                       // Then we pop that top value as we have traversed that once
+
+     if(cnt==1){                    // cnt==1 means it is for pre-order traverse
+       pre.push_back(node->data);   // then we have pushed the node->data to pre vector
+       s.push({node,cnt+1});        // Once done we push it again to stack with paired value as +1 so as this can go further for in-order and post-order traversal
+
+       if(node->left!=NULL){        // then we will if the node contains any element to its left
+          s.push({node->left,1});   //if yes then the stack got a new top value as the node's left and paired value of 1
+       }
+     }
+
+     else if(cnt==2){               // we will check cnt==2 for in-order traversal
+        i.push_back(node->data);    //push node->data to vector i
+        s.push({node,cnt+1});       // push node and increased value of cnt by 1 as to proceed for c==3 means post-order traversal
+
+        if(node->right!=NULL){      // if node contains any right value
+          s.push({node->right,1});  // push that node->right with paired value of 1 to stack s
+        }
+     }
+
+     else{
+       pos.push_back(node->data);   // else contains the condition of cnt==3 and also it is the post-order traversal and simply insert node->data to pre vector as we don't have to treat left or right further
+     }
+     }
+
+ans.push_back(i);
+ans.push_back(pre);
+ans.push_back(pos);
+
+return ans;                        // After that push i, pre, pos to ans and return ans.
+
+}
