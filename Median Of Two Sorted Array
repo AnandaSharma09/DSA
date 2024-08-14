@@ -1,0 +1,54 @@
+<<<<<<------------ Brute Force ------------>>>>>>
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    vector<int>l;
+    for(int i=0;i<nums1.size();i++){
+       l.push_back(nums1[i]);
+    }
+    for(int i=0;i<nums2.size();i++){
+       l.push_back(nums2[i]);
+    }
+    sort(l.begin(),l.end());
+    int n=l.size();
+    if(n%2!=0){
+      float m=l[n/2];
+      return m;
+    }
+    else{
+       float x= l[n/2]+l[(n/2)-1];
+       return x/2;
+    }
+}
+};
+
+
+Complexity :
+  Time -->> O((m+n)log(m+n))
+  Memory -->> O(m+n)
+
+
+
+<<<<<<------------ Better Solution ------------>>>>>>
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int s=nums1.size()+nums2.size();
+        vector<int>m(s);
+        merge(nums1.begin(),nums1.end(),nums2.begin(),nums2.end(),m.begin());
+        if(s%2!=0){
+            return m[s/2];
+        }
+        else{
+            float x= float(m[s/2]+m[(s/2)-1])/2;
+            return x;
+        }
+    }
+};
+
+
+  Complexity :
+  Time -->> O(m+n)
+  Memory -->> O(m+n)
