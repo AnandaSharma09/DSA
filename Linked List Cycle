@@ -1,0 +1,52 @@
+<<<<<<------------ Brute Force ------------>>>>>>
+
+bool detectLoop(Node* head) {
+    
+    // Initialize a pointer 'temp' having head or as head
+    Node* temp = head;  
+    
+   // map for containing data for every encountered node
+    unordered_map<Node*, int> nodeMap;  
+
+    // ll traversing
+    while (temp != nullptr) {
+        // temp already in map then loop encountered at that node
+        if (nodeMap.find(temp) != nodeMap.end()) {
+            return true;
+        }
+        // temp not in the map...store it 
+        nodeMap[temp] = 1;
+        
+        temp = temp->next;  
+    }
+
+    //loop not found as whole ll got traversed succesfully
+    return false;
+}
+
+Complexity :
+  Time Complexity : O(2*n*log(n))
+  Space Complexity : O(n)
+
+
+<<<<<<------------ Optimized Solution ------------>>>>>>
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode *tort=head, *hare=head;
+        while(tort!=NULL && hare!=NULL && hare->next!=NULL){
+            tort=tort->next;
+            hare=hare->next->next;
+            if(tort==hare){
+                return 1;
+            }
+        }
+        return 0;
+    }
+};
+
+
+Complexity :
+  Time Complexity : O(n) //traversing only
+  Space Complexity : O(1) // only pointers used
