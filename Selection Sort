@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+
+void selec_sort(int arr[], int n){
+	
+	for(int i=0;i<=n-2;i++){
+		int mini=i;
+		for(int j=i;j<=n-1;j++){
+			if(arr[j]<arr[mini]){
+				mini=j;
+			}
+		}
+		int temp=arr[mini];
+		arr[mini]=arr[i];
+		arr[i]=temp;
+	}
+}
+
+
+
+int main(){
+	int s;
+	cout<<"Enter array size: ";
+	cin>>s;
+	int arr[s];
+	for(int i=0;i<s;i++){
+		cin>>arr[i];
+	}
+	int n=sizeof(arr)/sizeof(arr[0]);
+	selec_sort(arr,n);
+	for(int i=0;i<n;i++){
+		cout<<arr[i]<<" ";
+	}
+}
